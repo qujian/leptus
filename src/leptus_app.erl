@@ -29,7 +29,10 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    leptus_sup:start_link().
+    io:format('staring...'),
+    Result = leptus_sup:start_link(),
+    io:format("Result:~p~n", [Result]),
+    Result.
 
 stop(_State) ->
     ok.
