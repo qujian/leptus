@@ -31,7 +31,7 @@ ifdef USE_JSX
     dep_jsx = https://github.com/talentdeficit/jsx/archive/v1.4.5.tar.gz
     ERLC_OPTS += -DUSE_JSX
 else
-    dep_jiffy = https://github.com/davisp/jiffy/archive/0.8.5.tar.gz
+    dep_jiffy = https://github.com/davisp/jiffy/archive/master.tar.gz #0.8.5.tar.gz
 endif
 
 DEPS_DIR ?= $(CURDIR)/deps
@@ -101,7 +101,7 @@ app: ebin/ ebin/$(PROJECT).app
 
 ebin/: $(wildcard src/*.erl)
 	@mkdir -p $(EBIN)
-	$(erlc_verbose) erlc -v -o ebin $(ERLC_OPTS) $?
+	$(erlc_verbose) erlc -v -o ebin -I include $(ERLC_OPTS) $?
 
 ebin/%.app: src/%.app.src
 	cp $< $@
